@@ -1,0 +1,6 @@
+<h2>Report Harvest</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Submit Harvest</button>
+</form>

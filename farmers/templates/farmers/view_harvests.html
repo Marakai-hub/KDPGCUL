@@ -1,0 +1,12 @@
+<h2>View Harvests</h2>
+<table>
+    <tr><th>Season</th><th>Land Size</th><th>Potato Kgs</th><th>Date Reported</th></tr>
+    {% for harvest in harvests %}
+    <tr>
+        <td>{{ harvest.season }}</td>
+        <td>{{ harvest.land_size }}</td>
+        <td>{{ harvest.potato_kg }}</td>
+        <td>{{ harvest.date_reported }}</td>
+    </tr>
+    {% endfor %}
+</table>

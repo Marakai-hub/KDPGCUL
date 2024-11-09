@@ -1,0 +1,12 @@
+<h2>View Planting Reports</h2>
+<table>
+    <tr><th>Season</th><th>Land Size</th><th>Potato Kgs</th><th>Planting Date</th></tr>
+    {% for planting in plantings %}
+    <tr>
+        <td>{{ planting.season }}</td>
+        <td>{{ planting.land_size }}</td>
+        <td>{{ planting.potato_kg }}</td>
+        <td>{{ planting.planting_date }}</td>
+    </tr>
+    {% endfor %}
+</table>

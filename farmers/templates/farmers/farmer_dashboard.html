@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Farmer Dashboard{% endblock %}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* Custom theme colors */
+        body { background-color: #f8f9fa; }
+        .navbar { background-color: #28a745; }
+        .navbar-brand, .navbar-nav .nav-link { color: white !important; }
+
+        /* Sidebar styles */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 250px;
+            background-color: #343a40;
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+            z-index: 1040;
+        }
+        .sidebar.active { transform: translateX(0); }
+        .sidebar .nav-link { color: white !important; }
+        .sidebar .nav-link:hover { background-color: #495057; }
+
+        /* Show sidebar on large screens */
+        @media (min-width: 992px) {
+            .sidebar { transform: translateX(0); }
+            .navbar-toggler { display: none; }
+        }
+
+        /* Adjust content area */
+        .content { margin-left: 250px; padding-top: 20px; }
+        @media (max-width: 991px) {
+            .content { margin-left: 0; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navbar for Desktop and Tablet -->
+<nav class="navbar navbar-expand-lg navbar-dark">
+    <a class="navbar-brand" href="#">KDPGCUL Dashboard</a>
+    <button class="navbar-toggler" type="button" onclick="toggleSidebar()">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+</nav>
+
+<!-- Sidebar Navigation -->
+<div class="sidebar" id="sidebar">
+    <ul class="nav flex-column p-3">
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'report_issue' farmer_id=farmer.farmer_id %}">Report an Issue</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'report_harvest' farmer_id=farmer.farmer_id %}">Report Harvest</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'report_planting' farmer_id=farmer.farmer_id %}">Report Planting</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'view_harvests' farmer_id=farmer.farmer_id %}">View Harvests</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'view_planting_reports' farmer_id=farmer.farmer_id %}">View Planting Reports</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'upcoming_events' %}">Upcoming Events</a>
+        </li>
+    </ul>
+</div>
+
+<!-- Main Content Area -->
+<div class="container content">
+    {% block content %}
+    <!-- Dynamic content will be inserted here based on the page -->
+    {% endblock %}
+</div>
+
+<script>
+    function toggleSidebar() {
+        document.getElementById("sidebar").classList.toggle("active");
+    }
+</script>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

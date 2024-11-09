@@ -1,0 +1,6 @@
+<h2>Report Planting</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Submit Planting Report</button>
+</form>
